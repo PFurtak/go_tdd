@@ -12,14 +12,29 @@ func TestGreet(t *testing.T) {
 		}
 	}
 
-	t.Run("Greet with supplied name", func(t *testing.T) {
-		result := Greet("Patrick")
+	t.Run("Greet with supplied name in english", func(t *testing.T) {
+		result := Greet("Patrick", "english")
 		expected := "Hello, Patrick!"
 
 		assertCorrectMessage(t, result, expected)
 	})
-	t.Run("Greet world when supplied empty string", func(t *testing.T) {
-		result := Greet("")
+
+	t.Run("Greet with supplied name in Spanish", func(t *testing.T) {
+		result := Greet("Patrick", "spanish")
+		expected := "Hola, Patrick!"
+
+		assertCorrectMessage(t, result, expected)
+	})
+
+	t.Run("Greet with supplied name in French", func(t *testing.T) {
+		result := Greet("Patrick", "french")
+		expected := "Bonjour, Patrick!"
+
+		assertCorrectMessage(t, result, expected)
+	})
+
+	t.Run("Greet world in english when supplied empty string for name and language", func(t *testing.T) {
+		result := Greet("", "")
 		expected := "Hello, World!"
 
 		assertCorrectMessage(t, result, expected)
