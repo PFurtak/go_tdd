@@ -3,21 +3,25 @@ package main
 import "testing"
 
 func TestGreet(t *testing.T) {
+
+	assertCorrectMessage := func(t testing.TB, result, expected string) {
+		t.Helper()
+
+		if result != expected {
+			t.Errorf("result: %q, expected: %q", result, expected)
+		}
+	}
+
 	t.Run("Greet with supplied name", func(t *testing.T) {
-		got := Greet("Patrick")
+		result := Greet("Patrick")
 		expected := "Hello, Patrick!"
 
-		if got != expected {
-			t.Errorf("got: %q, expected: %q", got, expected)
-		}
+		assertCorrectMessage(t, result, expected)
 	})
 	t.Run("Greet world when supplied empty string", func(t *testing.T) {
-		got := Greet("")
+		result := Greet("")
 		expected := "Hello, World!"
 
-		if got != expected {
-			t.Errorf("got: %q, expected: %q", got, expected)
-		}
+		assertCorrectMessage(t, result, expected)
 	})
-
 }
